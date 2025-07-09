@@ -35,20 +35,20 @@ def fitness(im, x):
     return np.power(weights * (im - setup), 2.0 ).mean()
 
 # pick a random point, move it somewhere else randomly
-def modify_zahra(x):
+def modify_student1(x):
     idx = np.random.randint(x.shape[0])
     xpr = x.copy()
     xpr[idx] = np.random.random((2,))
     return xpr
 
-def modify_cory(x):
+def modify_prof(x):
     idx = np.random.randint(x.shape[0])
     xpr = x.copy()
     xpr[idx] += (.1 - .2*np.random.random((2,)))
     return xpr
 
 # shift all the points by a small random amount (different per point)
-def modify_ronan(x):
+def modify_student2(x):
     return x
 
 def modify_kazu(x):
@@ -81,7 +81,7 @@ def sim_anneal(im):
     
     # loop over temperature values
     for T in tempvals:
-        xpr = modify_cory(x)
+        xpr = modify_prof(x)
         # xpr = modify_kazu(x)
         fpr = fitness(im,xpr)
         diffE = fpr - fx
